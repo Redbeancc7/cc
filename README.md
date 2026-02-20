@@ -203,6 +203,72 @@
             50% { opacity: 1; }
         }
 
+        @keyframes paperSlideIn {
+            0% {
+                transform: translate(-50%, -200%);
+                opacity: 0;
+            }
+            100% {
+                transform: translate(-50%, -50%);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes cardFlip {
+            0% { transform: rotateY(0deg); }
+            50% { transform: rotateY(90deg); }
+            100% { transform: rotateY(0deg); }
+        }
+
+        .magic-card {
+            width: 80px;
+            height: 120px;
+            border-radius: 8px;
+            cursor: pointer;
+            perspective: 1000px;
+            transition: transform 0.3s ease;
+        }
+        .magic-card:hover {
+            transform: translateY(-5px);
+        }
+        .card-back, .card-front {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        .card-back {
+            background: linear-gradient(135deg, #6840a0 0%, #9060c0 50%, #6840a0 100%);
+            border: 2px solid #a080d0;
+        }
+        .card-front {
+            background: linear-gradient(180deg, #f8f0ff 0%, #e8e0f8 100%);
+            border: 2px solid #c0b0d8;
+            flex-direction: column;
+            font-size: 24px;
+        }
+        .card-front .card-name {
+            font-size: 10px;
+            margin-top: 5px;
+            color: #504060;
+            text-align: center;
+        }
+        .card-front.reversed {
+            transform: rotate(180deg);
+        }
+        .card-front.reversed .card-name {
+            transform: rotate(180deg);
+        }
+
         body {
             min-height: 100vh;
             background: linear-gradient(180deg, 
@@ -410,11 +476,11 @@
 
         .desktop-icons {
             position: fixed;
-            left: 20px;
-            top: 20px;
+            left: 15px;
+            top: 15px;
             display: grid;
-            grid-template-columns: repeat(2, 85px);
-            gap: 12px 16px;
+            grid-template-columns: repeat(2, 75px);
+            gap: 8px 12px;
             z-index: 10;
         }
 
@@ -422,8 +488,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 85px;
-            padding: 6px;
+            width: 75px;
+            padding: 5px;
             cursor: pointer;
             border: 1px solid transparent;
             border-radius: 4px;
@@ -442,28 +508,28 @@
         }
 
         .icon-image {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
             image-rendering: pixelated;
         }
 
         .icon-label {
-            font-size: 12px;
+            font-size: 11px;
             color: #504060;
             text-align: center;
             text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.8), -1px -1px 0 rgba(255, 255, 255, 0.8);
             word-wrap: break-word;
-            max-width: 80px;
-            line-height: 1.3;
+            max-width: 70px;
+            line-height: 1.2;
         }
 
         .win-icon {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             position: relative;
         }
 
@@ -634,6 +700,48 @@
             transform: translate(-50%, -50%);
             font-size: 8px;
             color: #c03030;
+        }
+
+        .win-icon.network {
+            background: linear-gradient(180deg, #d8e8f8 0%, #b8c8d8 100%);
+            border: 2px solid #6080a0;
+            border-radius: 4px;
+        }
+        .win-icon.network::before {
+            content: '🖥️';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+        }
+
+        .win-icon.fish {
+            background: linear-gradient(180deg, #b8e8f0 0%, #90d0e0 100%);
+            border: 2px solid #60a0b0;
+            border-radius: 50%;
+        }
+        .win-icon.fish::before {
+            content: '🐟';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+        }
+
+        .win-icon.magic {
+            background: linear-gradient(180deg, #d8b8e8 0%, #b890d0 100%);
+            border: 2px solid #8060a0;
+            border-radius: 8px;
+        }
+        .win-icon.magic::before {
+            content: '🔮';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
         }
 
         .win-icon.help {
@@ -2587,15 +2695,15 @@
 
         @media (max-width: 480px) {
             .desktop-icons { 
-                left: 8px; 
-                top: 8px; 
-                gap: 8px;
-                grid-template-columns: repeat(2, 65px);
+                left: 5px; 
+                top: 5px; 
+                gap: 5px;
+                grid-template-columns: repeat(2, 60px);
             }
-            .desktop-icon { width: 65px; padding: 4px; }
-            .icon-image { width: 32px; height: 32px; }
-            .icon-label { font-size: 10px; max-width: 60px; }
-            .win-icon { width: 32px; height: 32px; }
+            .desktop-icon { width: 60px; padding: 3px; }
+            .icon-image { width: 28px; height: 28px; }
+            .icon-label { font-size: 9px; max-width: 55px; }
+            .win-icon { width: 28px; height: 28px; }
             .chat-window { top: 10px; left: 10px; width: calc(100% - 20px); height: 280px; }
             .paint-window, .notepad-window, .word-window, .calc-window {
                 width: calc(100% - 20px);
@@ -2731,21 +2839,33 @@
     </div>
 
     <div class="desktop-icons">
-        <div class="desktop-icon" ondblclick="openWindow('chatWindow')" onclick="selectIcon(this)">
-            <div class="icon-image"><div class="win-icon chat"></div></div>
-            <span class="icon-label">Dream Entity</span>
-        </div>
         <div class="desktop-icon" ondblclick="openWindow('myComputerWindow')" onclick="selectIcon(this)">
             <div class="icon-image"><div class="win-icon my-computer"></div></div>
             <span class="icon-label">我的电脑</span>
+        </div>
+        <div class="desktop-icon" onclick="selectIcon(this)">
+            <div class="icon-image"><div class="win-icon folder"></div></div>
+            <span class="icon-label">我的文档</span>
+        </div>
+        <div class="desktop-icon" ondblclick="openWindow('networkWindow')" onclick="selectIcon(this)">
+            <div class="icon-image"><div class="win-icon network"></div></div>
+            <span class="icon-label">网上邻居</span>
         </div>
         <div class="desktop-icon" onclick="selectIcon(this)">
             <div class="icon-image"><div class="win-icon recycle-bin"></div></div>
             <span class="icon-label">回收站</span>
         </div>
         <div class="desktop-icon" onclick="selectIcon(this)">
-            <div class="icon-image"><div class="win-icon folder"></div></div>
-            <span class="icon-label">我的文档</span>
+            <div class="icon-image"><div class="win-icon internet"></div></div>
+            <span class="icon-label">Internet</span>
+        </div>
+        <div class="desktop-icon" onclick="selectIcon(this)">
+            <div class="icon-image"><div class="win-icon settings"></div></div>
+            <span class="icon-label">设置</span>
+        </div>
+        <div class="desktop-icon" ondblclick="openWindow('chatWindow')" onclick="selectIcon(this)">
+            <div class="icon-image"><div class="win-icon chat"></div></div>
+            <span class="icon-label">Dream Entity</span>
         </div>
         <div class="desktop-icon" ondblclick="openWindow('notepadWindow')" onclick="selectIcon(this)">
             <div class="icon-image"><div class="win-icon notepad"></div></div>
@@ -2763,6 +2883,10 @@
             <div class="icon-image"><div class="win-icon minesweeper"></div></div>
             <span class="icon-label">扫雷</span>
         </div>
+        <div class="desktop-icon" onclick="selectIcon(this)">
+            <div class="icon-image"><div class="win-icon games"></div></div>
+            <span class="icon-label">游戏</span>
+        </div>
         <div class="desktop-icon" ondblclick="openWindow('emotionWindow')" onclick="selectIcon(this)">
             <div class="icon-image"><div class="win-icon emotion"></div></div>
             <span class="icon-label">情绪调酒</span>
@@ -2775,17 +2899,13 @@
             <div class="icon-image"><div class="win-icon excel"></div></div>
             <span class="icon-label">Excel</span>
         </div>
-        <div class="desktop-icon" onclick="selectIcon(this)">
-            <div class="icon-image"><div class="win-icon settings"></div></div>
-            <span class="icon-label">设置</span>
+        <div class="desktop-icon" ondblclick="openFishWindow()" onclick="selectIcon(this)">
+            <div class="icon-image"><div class="win-icon fish"></div></div>
+            <span class="icon-label">Fish</span>
         </div>
-        <div class="desktop-icon" onclick="selectIcon(this)">
-            <div class="icon-image"><div class="win-icon internet"></div></div>
-            <span class="icon-label">Internet</span>
-        </div>
-        <div class="desktop-icon" onclick="selectIcon(this)">
-            <div class="icon-image"><div class="win-icon games"></div></div>
-            <span class="icon-label">游戏</span>
+        <div class="desktop-icon" ondblclick="openMagicWindow()" onclick="selectIcon(this)">
+            <div class="icon-image"><div class="win-icon magic"></div></div>
+            <span class="icon-label">Magic</span>
         </div>
     </div>
 
@@ -3052,7 +3172,7 @@
                 <div style="font-size: 32px;">💾</div>
                 <div style="font-size: 11px;">本地磁盘 (C:)</div>
             </div>
-            <div style="text-align: center; cursor: pointer;">
+            <div style="text-align: center; cursor: pointer;" ondblclick="openDVDPlayer()">
                 <div style="font-size: 32px;">💿</div>
                 <div style="font-size: 11px;">DVD驱动器 (D:)</div>
             </div>
@@ -3060,13 +3180,134 @@
                 <div style="font-size: 32px;">📁</div>
                 <div style="font-size: 11px;">共享文件夹</div>
             </div>
-            <div style="text-align: center; cursor: pointer;">
+            <div style="text-align: center; cursor: pointer;" ondblclick="openPrinterWindow()">
                 <div style="font-size: 32px;">🖨️</div>
                 <div style="font-size: 11px;">打印机</div>
             </div>
         </div>
         <div class="win-statusbar">
             <div class="win-statusbar-section">4 个对象</div>
+        </div>
+    </div>
+
+    <div class="win-window" id="networkWindow" style="top: 80px; left: 200px; width: 450px; height: 320px; display: none;">
+        <div class="win-titlebar" onmousedown="startDrag(event, 'networkWindow')">
+            <div class="win-titlebar-left">
+                <div class="win-titlebar-icon">🌐</div>
+                <span class="win-titlebar-text">网上邻居</span>
+            </div>
+            <div class="win-titlebar-controls">
+                <button class="win-btn win-btn-minimize" onclick="minimizeWindow('networkWindow')"></button>
+                <button class="win-btn win-btn-maximize"></button>
+                <button class="win-btn win-btn-close" onclick="closeWindow('networkWindow')"></button>
+            </div>
+        </div>
+        <div class="win-menubar">
+            <span class="win-menu-item">文件(F)</span>
+            <span class="win-menu-item">编辑(E)</span>
+            <span class="win-menu-item">查看(V)</span>
+            <span class="win-menu-item">帮助(H)</span>
+        </div>
+        <div class="win-content" style="background: white; padding: 15px; display: flex; flex-wrap: wrap; gap: 20px; align-content: flex-start;">
+            <div style="text-align: center; cursor: pointer; padding: 10px;" ondblclick="openNetworkComputer()">
+                <div style="font-size: 40px;">🖥️</div>
+                <div style="font-size: 12px; margin-top: 5px; color: #000080;">叽歪毛</div>
+            </div>
+        </div>
+        <div class="win-statusbar">
+            <div class="win-statusbar-section">1 个对象 | 局域网</div>
+        </div>
+    </div>
+
+    <div class="win-window" id="fishWindow" style="top: 80px; left: 220px; width: 380px; height: auto; display: none;">
+        <div class="win-titlebar" onmousedown="startDrag(event, 'fishWindow')">
+            <div class="win-titlebar-left">
+                <div class="win-titlebar-icon">🐟</div>
+                <span class="win-titlebar-text">Fish - 每日运势</span>
+            </div>
+            <div class="win-titlebar-controls">
+                <button class="win-btn win-btn-minimize" onclick="minimizeWindow('fishWindow')"></button>
+                <button class="win-btn win-btn-maximize"></button>
+                <button class="win-btn win-btn-close" onclick="closeWindow('fishWindow')"></button>
+            </div>
+        </div>
+        <div class="win-content" style="background: linear-gradient(180deg, #e8f4f8 0%, #d0e8f0 100%); padding: 20px; text-align: center;">
+            <div id="fishContainer" style="background: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <div id="fishEmoji" style="font-size: 50px; margin-bottom: 10px;">🐟</div>
+                <div id="fishFortune" style="font-size: 24px; color: #6080a0; margin-bottom: 15px; font-weight: bold;">大吉</div>
+                <div id="fishTime" style="font-size: 13px; color: #808080; margin-bottom: 10px;">宜：摸鱼</div>
+                <div id="fishTip" style="font-size: 12px; color: #606060; padding: 10px; background: #f8f8f8; border-radius: 6px; margin-top: 10px; line-height: 1.6;">
+                    今日宜多喝水，保持好心情~
+                </div>
+            </div>
+            <button onclick="refreshFish()" style="margin-top: 15px; padding: 8px 25px; background: linear-gradient(180deg, #b8e8f0 0%, #90d0e0 100%); border: 2px solid #60a0b0; border-radius: 6px; font-family: inherit; font-size: 13px; cursor: pointer; color: #406070;">
+                🔄 换一签
+            </button>
+        </div>
+    </div>
+
+    <div class="win-window" id="dvdPlayerWindow" style="top: 50px; left: 150px; width: 520px; height: auto; display: none;">
+        <div class="win-titlebar" onmousedown="startDrag(event, 'dvdPlayerWindow')">
+            <div class="win-titlebar-left">
+                <div class="win-titlebar-icon">💿</div>
+                <span class="win-titlebar-text">DVD 播放器</span>
+            </div>
+            <div class="win-titlebar-controls">
+                <button class="win-btn win-btn-minimize" onclick="minimizeWindow('dvdPlayerWindow')"></button>
+                <button class="win-btn win-btn-maximize"></button>
+                <button class="win-btn win-btn-close" onclick="closeDVDPlayer()"></button>
+            </div>
+        </div>
+        <div class="win-content" style="background: #000; padding: 0;">
+            <video id="dvdVideo" style="width: 100%; display: block;" controls>
+                <source src="https://github.com/Redbeancc7/cc/releases/download/v2.0/6da177473e86206e7091c28471120401.mp4" type="video/mp4">
+                您的浏览器不支持视频播放
+            </video>
+        </div>
+        <div class="win-statusbar">
+            <div class="win-statusbar-section">DVD 播放中...</div>
+        </div>
+    </div>
+
+    <div class="win-window" id="magicWindow" style="top: 60px; left: 180px; width: 500px; height: auto; display: none;">
+        <div class="win-titlebar" onmousedown="startDrag(event, 'magicWindow')">
+            <div class="win-titlebar-left">
+                <div class="win-titlebar-icon">🔮</div>
+                <span class="win-titlebar-text">Magic - 塔罗牌占卜</span>
+            </div>
+            <div class="win-titlebar-controls">
+                <button class="win-btn win-btn-minimize" onclick="minimizeWindow('magicWindow')"></button>
+                <button class="win-btn win-btn-maximize"></button>
+                <button class="win-btn win-btn-close" onclick="closeWindow('magicWindow')"></button>
+            </div>
+        </div>
+        <div class="win-content" style="background: linear-gradient(180deg, #f0e8f8 0%, #e0d0f0 100%); padding: 20px;">
+            <div style="text-align: center; margin-bottom: 15px;">
+                <div style="font-size: 14px; color: #605070; margin-bottom: 10px;">✨ 三张牌阵占卜 ✨</div>
+                <div style="font-size: 12px; color: #807090;">过去 · 现在 · 未来</div>
+            </div>
+            <div id="magicCards" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 20px;">
+                <div class="magic-card" id="card1" onclick="revealCard(0)">
+                    <div class="card-back">🔮</div>
+                    <div class="card-front" style="display: none;"></div>
+                </div>
+                <div class="magic-card" id="card2" onclick="revealCard(1)">
+                    <div class="card-back">🔮</div>
+                    <div class="card-front" style="display: none;"></div>
+                </div>
+                <div class="magic-card" id="card3" onclick="revealCard(2)">
+                    <div class="card-back">🔮</div>
+                    <div class="card-front" style="display: none;"></div>
+                </div>
+            </div>
+            <div id="magicResult" style="display: none; background: rgba(255,255,255,0.7); border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                <div id="cardInterpretations"></div>
+            </div>
+            <div style="text-align: center;">
+                <button onclick="drawMagicCards()" style="padding: 10px 30px; background: linear-gradient(180deg, #d8b8e8 0%, #b890d0 100%); border: 2px solid #8060a0; border-radius: 20px; font-family: inherit; font-size: 14px; cursor: pointer; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.3);">
+                    🌟 抽牌占卜
+                </button>
+            </div>
         </div>
     </div>
 
@@ -3243,6 +3484,22 @@
             <div class="taskbar-item" id="taskbar-myComputerWindow" onclick="toggleWindow('myComputerWindow')" style="display: none;">
                 <span>💻</span>
                 <span>我的电脑</span>
+            </div>
+            <div class="taskbar-item" id="taskbar-networkWindow" onclick="toggleWindow('networkWindow')" style="display: none;">
+                <span>🌐</span>
+                <span>网上邻居</span>
+            </div>
+            <div class="taskbar-item" id="taskbar-fishWindow" onclick="toggleWindow('fishWindow')" style="display: none;">
+                <span>🐟</span>
+                <span>Fish</span>
+            </div>
+            <div class="taskbar-item" id="taskbar-magicWindow" onclick="toggleWindow('magicWindow')" style="display: none;">
+                <span>🔮</span>
+                <span>Magic</span>
+            </div>
+            <div class="taskbar-item" id="taskbar-dvdPlayerWindow" onclick="toggleWindow('dvdPlayerWindow')" style="display: none;">
+                <span>💿</span>
+                <span>DVD播放器</span>
             </div>
             <div class="taskbar-item" id="taskbar-excelWindow" onclick="toggleWindow('excelWindow')" style="display: none;">
                 <span>📊</span>
@@ -3617,13 +3874,13 @@
         let calcNewNumber = true;
 
         const playlist = [
-            { title: 'Outer Wilds', artist: 'Andrew Prahlow', album: 'Outer Wilds OST', src: 'https://ghproxy.com/https://github.com/Redbeancc7/cc/releases/download/v1.0/Andrew.Prahlow.-.Outer.Wilds.mp3', cover: '🌌' },
-            { title: 'Are You Lost', artist: 'Park Bird', album: 'Dreamcore', src: 'https://ghproxy.com/https://github.com/Redbeancc7/cc/releases/download/v1.0/Park.Bird.-.Are.You.Lost.1.mp3', cover: '🎵' },
-            { title: 'Hi', artist: 'TEMPOREX', album: 'Chill Vibes', src: 'https://ghproxy.com/https://github.com/Redbeancc7/cc/releases/download/v1.0/TEMPOREX.-.Hi.mp3', cover: '🌙' },
-            { title: '她呓语', artist: '贺予彤', album: '独立音乐', src: 'https://ghproxy.com/https://github.com/Redbeancc7/cc/releases/download/v1.0/tayiyu.mp3', cover: '🌸' },
-            { title: '载我回家', artist: '张悬', album: 'My Life Will', src: 'https://ghproxy.com/https://github.com/Redbeancc7/cc/releases/download/v1.0/zawohj.mp3', cover: '🏠' },
-            { title: '想去码头整点薯条', artist: '黄金玉米王', album: '网络热歌', src: 'https://ghproxy.com/https://github.com/Redbeancc7/cc/releases/download/v1.0/shutiao.mp3', cover: '🍟' },
-            { title: 'Redbean', artist: 'Unknown', album: 'Collection', src: 'https://ghproxy.com/https://github.com/Redbeancc7/cc/releases/download/v1.0/redbean.mp3', cover: '🎵' }
+            { title: 'Outer Wilds', artist: 'Andrew Prahlow', album: 'Outer Wilds OST', src: 'https://github.com/Redbeancc7/cc/releases/download/v1.0/Andrew.Prahlow.-.Outer.Wilds.mp3', cover: '🌌' },
+            { title: 'Are You Lost', artist: 'Park Bird', album: 'Dreamcore', src: 'https://github.com/Redbeancc7/cc/releases/download/v1.0/Park.Bird.-.Are.You.Lost.1.mp3', cover: '🎵' },
+            { title: 'Hi', artist: 'TEMPOREX', album: 'Chill Vibes', src: 'https://github.com/Redbeancc7/cc/releases/download/v1.0/TEMPOREX.-.Hi.mp3', cover: '🌙' },
+            { title: '她呓语', artist: '贺予彤', album: '独立音乐', src: 'https://github.com/Redbeancc7/cc/releases/download/v1.0/tayiyu.mp3', cover: '🌸' },
+            { title: '载我回家', artist: '张悬', album: 'My Life Will', src: 'https://github.com/Redbeancc7/cc/releases/download/v1.0/zawohj.mp3', cover: '🏠' },
+            { title: '想去码头整点薯条', artist: '黄金玉米王', album: '网络热歌', src: 'https://github.com/Redbeancc7/cc/releases/download/v1.0/shutiao.mp3', cover: '🍟' },
+            { title: 'Redbean', artist: 'Unknown', album: 'Collection', src: 'https://github.com/Redbeancc7/cc/releases/download/v1.0/redbean.mp3', cover: '🎵' }
         ];
 
         let currentTrack = 0;
@@ -3972,6 +4229,460 @@
             const taskbarItem = document.getElementById('taskbar-' + windowId);
             if (taskbarItem) taskbarItem.style.display = 'none';
             updateTaskbar();
+        }
+
+        let printerImageUrl = '';
+
+        function openPrinterWindow() {
+            const existingWindow = document.getElementById('printerWindow');
+            if (existingWindow) {
+                existingWindow.remove();
+            }
+            
+            const printerWin = document.createElement('div');
+            printerWin.id = 'printerWindow';
+            printerWin.className = 'win-window';
+            printerWin.style.cssText = 'top: 100px; left: 250px; width: 400px; height: auto; display: flex; z-index: 150;';
+            
+            printerWin.innerHTML = `
+                <div style="width: 100%;">
+                    <div class="win-titlebar" onmousedown="startDrag(event, 'printerWindow')">
+                        <div class="win-titlebar-left">
+                            <div class="win-titlebar-icon">🖨️</div>
+                            <span class="win-titlebar-text">打印机</span>
+                        </div>
+                        <div class="win-titlebar-controls">
+                            <button class="win-btn win-btn-close" onclick="document.getElementById('printerWindow').remove()"></button>
+                        </div>
+                    </div>
+                    <div style="padding: 15px; background: var(--win-bg);">
+                        <div style="margin-bottom: 10px; font-size: 12px; color: #404040;">请输入图片链接：</div>
+                        <input type="text" id="printerImageUrlInput" value="https://github.com/Redbeancc7/cc/releases/download/v2.0/fe87a7809fb33237f79e86fcd2baf913.png" placeholder="https://example.com/image.png" 
+                            style="width: 100%; padding: 6px 8px; border: 2px solid; border-color: var(--win-dark) var(--win-light) var(--win-light) var(--win-dark); background: white; font-family: inherit; font-size: 12px; box-sizing: border-box;">
+                        <div style="margin-top: 12px; display: flex; gap: 10px; justify-content: center;">
+                            <button onclick="startPrinting()" style="padding: 5px 20px; background: var(--win-bg); border: 2px solid; border-color: var(--win-light) var(--win-darker) var(--win-darker) var(--win-light); font-family: inherit; font-size: 12px; cursor: pointer;">🖨️ 打印</button>
+                            <button onclick="document.getElementById('printerWindow').remove()" style="padding: 5px 20px; background: var(--win-bg); border: 2px solid; border-color: var(--win-light) var(--win-darker) var(--win-darker) var(--win-light); font-family: inherit; font-size: 12px; cursor: pointer;">取消</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(printerWin);
+        }
+
+        function startPrinting() {
+            const urlInput = document.getElementById('printerImageUrlInput');
+            const imageUrl = urlInput ? urlInput.value.trim() : '';
+            
+            if (!imageUrl) {
+                alert('请输入图片链接！');
+                return;
+            }
+            
+            const printerWin = document.getElementById('printerWindow');
+            if (printerWin) printerWin.remove();
+            
+            showPrintingAnimation(imageUrl);
+        }
+
+        function showPrintingAnimation(imageUrl) {
+            const printOverlay = document.createElement('div');
+            printOverlay.id = 'printOverlay';
+            printOverlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 20000;
+            `;
+            
+            printOverlay.innerHTML = `
+                <div style="
+                    background: var(--win-bg);
+                    border: 2px solid;
+                    border-color: var(--win-light) var(--win-darker) var(--win-darker) var(--win-light);
+                    padding: 20px 30px;
+                    text-align: center;
+                    box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
+                ">
+                    <div style="font-size: 40px; margin-bottom: 10px;">🖨️</div>
+                    <div style="font-size: 14px; color: #404040;">正在打印...</div>
+                    <div style="margin-top: 10px; width: 150px; height: 8px; background: #c0b8c0; border: 1px solid #808080; overflow: hidden;">
+                        <div id="printProgressBar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #a090b8, #c0b0d0); transition: width 0.3s;"></div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(printOverlay);
+            
+            let progress = 0;
+            const progressBar = document.getElementById('printProgressBar');
+            const progressInterval = setInterval(() => {
+                progress += 5;
+                if (progressBar) progressBar.style.width = progress + '%';
+                
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    setTimeout(() => {
+                        printOverlay.remove();
+                        showPrintedImage(imageUrl);
+                    }, 300);
+                }
+            }, 100);
+        }
+
+        function showPrintedImage(imageUrl) {
+            const printedPaper = document.createElement('div');
+            printedPaper.id = 'printedPaper';
+            printedPaper.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 20000;
+                animation: paperSlideIn 0.5s ease-out;
+            `;
+            
+            printedPaper.innerHTML = `
+                <div style="
+                    background: white;
+                    border: 1px solid #c0c0c0;
+                    box-shadow: 3px 3px 15px rgba(0,0,0,0.4);
+                    padding: 20px;
+                    max-width: 400px;
+                ">
+                    <div style="text-align: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px dashed #c0c0c0;">
+                        <span style="font-size: 12px; color: #808080;">🖨️ 打印输出</span>
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="${imageUrl}" style="max-width: 100%; max-height: 300px; object-fit: contain;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\\'color:#c03030;font-size:12px;\\'>图片加载失败</div>';">
+                    </div>
+                    <div style="text-align: center; margin-top: 15px;">
+                        <button onclick="document.getElementById('printedPaper').remove()" style="padding: 5px 25px; background: var(--win-bg); border: 2px solid; border-color: var(--win-light) var(--win-darker) var(--win-darker) var(--win-light); font-family: inherit; font-size: 12px; cursor: pointer;">关闭</button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(printedPaper);
+            
+            printedPaper.addEventListener('click', (e) => {
+                if (e.target === printedPaper) {
+                    printedPaper.remove();
+                }
+            });
+        }
+
+        const fishFortunes = ['大吉', '中吉', '小吉', '吉', '末吉', '凶转吉', '平', '小凶', '末凶'];
+        const fishEmojis = ['🐟', '🐠', '🐡', '🦈', '🐬', '🐳', '🦭', '🦐', '🦀', '🐙', '🦑', '🐚'];
+        
+        const fishActivities = [
+            '宜：摸鱼', '宜：发呆', '宜：喝水', '宜：吃零食', '宜：听歌', '宜：散步',
+            '宜：早睡', '宜：赖床', '宜：打游戏', '宜：看剧', '宜：撸猫', '宜：晒太阳',
+            '宜：吃火锅', '宜：喝奶茶', '宜：网购', '宜：刷手机', '宜：发朋友圈', '宜：拍照',
+            '忌：加班', '忌：早起', '忌：开会', '忌：写报告', '忌：回消息', '忌：运动'
+        ];
+        
+        const fishTips = [
+            '今日宜多喝水，保持好心情~',
+            '运气不错，适合买彩票试试手气！',
+            '今天可能会有小惊喜哦~',
+            '保持微笑，好运自然来！',
+            '适合和朋友聊聊天~',
+            '今天适合尝试新事物！',
+            '记得按时吃饭，照顾好自己~',
+            '今天适合放松一下，不要太拼~',
+            '好运正在路上，请耐心等待~',
+            '今天可能会有意外收获！',
+            '适合整理一下心情和桌面~',
+            '今天适合做喜欢的事情~',
+            '记得给自己留点私人时间~',
+            '今天适合早睡早起~',
+            '可能会有贵人相助哦~',
+            '今天适合学习新技能~',
+            '记得多笑笑，心情会更好~',
+            '今天适合和家人联系~',
+            '可能会有好消息传来~',
+            '今天适合犒劳自己吃顿好的！',
+            '鱼鱼提醒你：你是最棒的！',
+            '今天适合看一部好电影~',
+            '记得深呼吸，一切都会好的~',
+            '今天适合做一个小计划~',
+            '鱼鱼祝你今天顺顺利利！',
+            '今天适合穿喜欢的衣服出门~',
+            '可能会有意想不到的好事发生~',
+            '今天适合给朋友一个小惊喜~',
+            '记得对自己好一点~',
+            '鱼鱼说：你值得所有美好的事物！'
+        ];
+
+        const tarotCards = [
+            { name: '愚者', emoji: '🃏', upright: '新的开始，无限可能，冒险精神，纯真无畏', reversed: '鲁莽冲动，缺乏方向，逃避责任，不切实际' },
+            { name: '魔术师', emoji: '🎭', upright: '创造力，自信，技能展现，新机遇', reversed: '欺骗，操纵，才能浪费，缺乏自信' },
+            { name: '女祭司', emoji: '🌙', upright: '直觉，神秘，内在智慧，潜意识', reversed: '隐藏的真相，表面化，忽视直觉，秘密暴露' },
+            { name: '女皇', emoji: '👑', upright: '丰饶，母性，创造力，自然之美', reversed: '创意枯竭，依赖他人，过度保护，忽视自我' },
+            { name: '皇帝', emoji: '🏛️', upright: '权威，领导力，秩序，稳定', reversed: '专制，僵化，控制欲，缺乏纪律' },
+            { name: '教皇', emoji: '📿', upright: '传统，信仰，精神指引，教育', reversed: '打破常规，个人信念，反叛，教条主义' },
+            { name: '恋人', emoji: '💕', upright: '爱情，和谐，选择，价值观', reversed: '关系失衡，错误选择，价值观冲突，不和谐' },
+            { name: '战车', emoji: '⚔️', upright: '意志力，胜利，决心，控制', reversed: '失控，缺乏方向，侵略性，挫折' },
+            { name: '力量', emoji: '🦁', upright: '内在力量，勇气，耐心，自我控制', reversed: '自我怀疑，软弱，缺乏自信，滥用力量' },
+            { name: '隐士', emoji: '🏔️', upright: '内省，寻求真理，孤独，智慧', reversed: '孤立，逃避，拒绝帮助，迷失方向' },
+            { name: '命运之轮', emoji: '🎡', upright: '命运转折，好运，循环，机遇', reversed: '厄运，抗拒改变，失控，坏运气' },
+            { name: '正义', emoji: '⚖️', upright: '公正，真理，因果，平衡', reversed: '不公，偏见，逃避责任，失衡' },
+            { name: '倒吊人', emoji: '🙃', upright: '牺牲，等待，新视角，放下', reversed: '拖延，无谓牺牲，固执，僵局' },
+            { name: '死神', emoji: '💀', upright: '结束，转变，新生，放下过去', reversed: '抗拒改变，停滞，无法放手，恐惧' },
+            { name: '节制', emoji: '🏺', upright: '平衡，调和，耐心，适度', reversed: '失衡，过度，缺乏耐心，冲突' },
+            { name: '恶魔', emoji: '😈', upright: '束缚，诱惑，物质主义，阴影', reversed: '解脱，打破束缚，面对阴影，自由' },
+            { name: '塔', emoji: '🗼', upright: '突变，毁灭，觉醒，真相揭露', reversed: '逃避灾难，恐惧改变，延迟崩溃' },
+            { name: '星星', emoji: '⭐', upright: '希望，灵感，平静，治愈', reversed: '绝望，失去信心，断开连接，不切实际' },
+            { name: '月亮', emoji: '🌕', upright: '幻觉，直觉，潜意识，恐惧', reversed: '释放恐惧，真相显现，清晰，平静' },
+            { name: '太阳', emoji: '☀️', upright: '成功，快乐，活力，积极', reversed: '暂时的挫折，过度乐观，延迟的成功' },
+            { name: '审判', emoji: '📯', upright: '觉醒，重生，召唤，宽恕', reversed: '自我怀疑，拒绝召唤，无法原谅' },
+            { name: '世界', emoji: '🌍', upright: '完成，成就，圆满，新旅程', reversed: '未完成，缺乏闭合，延迟成功' }
+        ];
+
+        const positionMeanings = ['过去', '现在', '未来'];
+        let currentCards = [];
+        let revealedCount = 0;
+
+        function openDVDPlayer() {
+            const win = document.getElementById('dvdPlayerWindow');
+            win.style.display = 'flex';
+            const taskbarItem = document.getElementById('taskbar-dvdPlayerWindow');
+            if (taskbarItem) taskbarItem.style.display = 'flex';
+            setActiveWindow('dvdPlayerWindow');
+            const video = document.getElementById('dvdVideo');
+            video.play();
+        }
+
+        function closeDVDPlayer() {
+            const video = document.getElementById('dvdVideo');
+            video.pause();
+            video.currentTime = 0;
+            const win = document.getElementById('dvdPlayerWindow');
+            win.style.display = 'none';
+            const taskbarItem = document.getElementById('taskbar-dvdPlayerWindow');
+            if (taskbarItem) taskbarItem.style.display = 'none';
+        }
+
+        function openMagicWindow() {
+            const win = document.getElementById('magicWindow');
+            win.style.display = 'flex';
+            const taskbarItem = document.getElementById('taskbar-magicWindow');
+            if (taskbarItem) taskbarItem.style.display = 'flex';
+            setActiveWindow('magicWindow');
+            resetMagicCards();
+        }
+
+        function resetMagicCards() {
+            currentCards = [];
+            revealedCount = 0;
+            for (let i = 1; i <= 3; i++) {
+                const card = document.getElementById('card' + i);
+                card.querySelector('.card-back').style.display = 'flex';
+                card.querySelector('.card-front').style.display = 'none';
+                card.querySelector('.card-front').classList.remove('reversed');
+            }
+            document.getElementById('magicResult').style.display = 'none';
+        }
+
+        function drawMagicCards() {
+            resetMagicCards();
+            const shuffled = [...tarotCards].sort(() => Math.random() - 0.5);
+            currentCards = shuffled.slice(0, 3).map(card => ({
+                ...card,
+                isReversed: Math.random() < 0.5
+            }));
+            
+            for (let i = 1; i <= 3; i++) {
+                const card = document.getElementById('card' + i);
+                card.style.animation = 'fadeIn 0.5s ease';
+            }
+        }
+
+        function revealCard(index) {
+            if (!currentCards[index] || revealedCount > index) return;
+            
+            const cardEl = document.getElementById('card' + (index + 1));
+            const cardFront = cardEl.querySelector('.card-front');
+            const cardBack = cardEl.querySelector('.card-back');
+            const card = currentCards[index];
+            
+            cardFront.innerHTML = `
+                <span>${card.emoji}</span>
+                <span class="card-name">${card.isReversed ? '逆位: ' : '正位: '}${card.name}</span>
+            `;
+            
+            if (card.isReversed) {
+                cardFront.classList.add('reversed');
+            }
+            
+            cardEl.style.animation = 'cardFlip 0.6s ease';
+            setTimeout(() => {
+                cardBack.style.display = 'none';
+                cardFront.style.display = 'flex';
+            }, 300);
+            
+            revealedCount++;
+            
+            if (revealedCount === 3) {
+                setTimeout(showInterpretations, 800);
+            }
+        }
+
+        function showInterpretations() {
+            const resultDiv = document.getElementById('magicResult');
+            const interpDiv = document.getElementById('cardInterpretations');
+            
+            let html = '';
+            currentCards.forEach((card, index) => {
+                const meaning = card.isReversed ? card.reversed : card.upright;
+                const position = positionMeanings[index];
+                const status = card.isReversed ? '逆位' : '正位';
+                
+                html += `
+                    <div style="margin-bottom: 12px; padding: 10px; background: rgba(255,255,255,0.5); border-radius: 6px;">
+                        <div style="font-weight: bold; color: #605070; margin-bottom: 5px;">
+                            ${position} · ${card.emoji} ${card.name} (${status})
+                        </div>
+                        <div style="font-size: 12px; color: #505050; line-height: 1.5;">
+                            ${meaning}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            interpDiv.innerHTML = html;
+            resultDiv.style.display = 'block';
+            resultDiv.style.animation = 'fadeIn 0.5s ease';
+        }
+
+        function openFishWindow() {
+            const win = document.getElementById('fishWindow');
+            win.style.display = 'flex';
+            const taskbarItem = document.getElementById('taskbar-fishWindow');
+            if (taskbarItem) taskbarItem.style.display = 'flex';
+            setActiveWindow('fishWindow');
+            refreshFish();
+        }
+
+        function refreshFish() {
+            const fortune = fishFortunes[Math.floor(Math.random() * fishFortunes.length)];
+            const emoji = fishEmojis[Math.floor(Math.random() * fishEmojis.length)];
+            const activity = fishActivities[Math.floor(Math.random() * fishActivities.length)];
+            const tip = fishTips[Math.floor(Math.random() * fishTips.length)];
+            
+            const container = document.getElementById('fishContainer');
+            container.style.animation = 'none';
+            container.offsetHeight;
+            container.style.animation = 'fadeIn 0.3s ease';
+            
+            document.getElementById('fishEmoji').textContent = emoji;
+            document.getElementById('fishFortune').textContent = fortune;
+            document.getElementById('fishTime').textContent = activity;
+            document.getElementById('fishTip').textContent = tip;
+            
+            const fortuneEl = document.getElementById('fishFortune');
+            if (fortune.includes('吉')) {
+                fortuneEl.style.color = '#50a070';
+            } else if (fortune.includes('凶')) {
+                fortuneEl.style.color = '#c06060';
+            } else {
+                fortuneEl.style.color = '#6080a0';
+            }
+        }
+
+        function openNetworkComputer() {
+            showNetworkDialog();
+        }
+
+        function showNetworkDialog() {
+            const existingDialog = document.getElementById('networkDialog');
+            if (existingDialog) {
+                existingDialog.remove();
+            }
+            
+            const dialog = document.createElement('div');
+            dialog.id = 'networkDialog';
+            dialog.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.3);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+            `;
+            
+            dialog.innerHTML = `
+                <div style="
+                    background: var(--win-bg);
+                    border: 2px solid;
+                    border-color: var(--win-light) var(--win-darker) var(--win-darker) var(--win-light);
+                    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+                    min-width: 320px;
+                    max-width: 400px;
+                ">
+                    <div style="
+                        background: linear-gradient(180deg, #d8c8e8 0%, #c8b8d8 100%);
+                        padding: 8px 10px;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                        border-bottom: 1px solid var(--win-dark);
+                    ">
+                        <span style="font-size: 16px;">⚠️</span>
+                        <span style="color: #404040; font-size: 12px; font-weight: bold;">连接失败</span>
+                    </div>
+                    <div style="
+                        padding: 25px 20px;
+                        display: flex;
+                        align-items: flex-start;
+                        gap: 15px;
+                        background: var(--win-bg);
+                    ">
+                        <div style="font-size: 40px; line-height: 1;">⚠️</div>
+                        <div style="flex: 1; font-size: 12px; line-height: 1.6; color: #404040;">
+                            距离太远，无法连接。<br>请使用微信聊天进行修复。
+                        </div>
+                    </div>
+                    <div style="
+                        padding: 10px 15px 15px;
+                        display: flex;
+                        justify-content: center;
+                        background: var(--win-bg);
+                        border-top: 1px solid var(--win-light);
+                    ">
+                        <button onclick="document.getElementById('networkDialog').remove()" style="
+                            min-width: 80px;
+                            padding: 4px 20px;
+                            background: var(--win-bg);
+                            border: 2px solid;
+                            border-color: var(--win-light) var(--win-darker) var(--win-darker) var(--win-light);
+                            font-family: inherit;
+                            font-size: 12px;
+                            cursor: pointer;
+                        " onmouseover="this.style.background='var(--win-light)'" onmouseout="this.style.background='var(--win-bg)'">
+                            确定
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(dialog);
+            
+            dialog.addEventListener('click', (e) => {
+                if (e.target === dialog) {
+                    dialog.remove();
+                }
+            });
         }
 
         function toggleWindow(windowId) {
