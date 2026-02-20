@@ -3617,15 +3617,15 @@
         let calcNewNumber = true;
 
         const playlist = [
-            { title: 'Outer Wilds', artist: 'Andrew Prahlow', album: 'Outer Wilds OST', src: '音乐/Andrew Prahlow - Outer Wilds.mp3', cover: '🌌' },
-            { title: 'Are You Lost', artist: 'Park Bird', album: 'Dreamcore', src: '音乐/Park Bird - Are You Lost (1).mp3', cover: '🎵' },
-            { title: 'Hi', artist: 'TEMPOREX', album: 'Chill Vibes', src: '音乐/TEMPOREX - Hi.mp3', cover: '🌙' },
-            { title: '红豆', artist: '张悬', album: '城市', src: '音乐/张悬 - 红豆.mp3', cover: '❤️' },
-            { title: '载我回家', artist: '张悬', album: 'My Life Will', src: '音乐/张悬 - 载我回家.mp3', cover: '🏠' },
-            { title: '红豆', artist: '王菲', album: '唱游', src: '音乐/王菲 - 红豆.mp3', cover: '💎' },
-            { title: '她呓语', artist: '贺予彤', album: '独立音乐', src: '音乐/贺予彤 - 她呓语.mp3', cover: '🌸' },
-            { title: '絮书', artist: '贺予彤', album: '独立音乐', src: '音乐/贺予彤 - 絮书.mp3', cover: '📝' },
-            { title: '想去码头整点薯条', artist: '黄金玉米王', album: '网络热歌', src: '音乐/黄金玉米王 - 想去码头整点薯条.mp3', cover: '🍟' }
+            { title: 'Outer Wilds', artist: 'Andrew Prahlow', album: 'Outer Wilds OST', src: 'https://github.com/Redbeancc7/cc/releases/download/v1.0/Andrew%20Prahlow%20-%20Outer%20Wilds.mp3', cover: '🌌' },
+            { title: 'Are You Lost', artist: 'Park Bird', album: 'Dreamcore', src: 'https://github.com/Redbeancc7/cc/releases/download/v1.0/Park%20Bird%20-%20Are%20You%20Lost%20(1).mp3', cover: '🎵' },
+            { title: 'Hi', artist: 'TEMPOREX', album: 'Chill Vibes', src: 'https://github.com/Redbeancc7/cc/releases/download/v1.0/TEMPOREX%20-%20Hi.mp3', cover: '🌙' },
+            { title: '红豆', artist: '张悬', album: '城市', src: 'https://github.com/Redbeancc7/cc/releases/download/v1.0/%E5%BC%A0%E6%82%AC%20-%20%E7%BA%A2%E8%B1%86.mp3', cover: '❤️' },
+            { title: '载我回家', artist: '张悬', album: 'My Life Will', src: 'https://github.com/Redbeancc7/cc/releases/download/v1.0/%E5%BC%A0%E6%82%AC%20-%20%E8%BD%BD%E6%88%91%E5%9B%9E%E5%AE%B6.mp3', cover: '🏠' },
+            { title: '红豆', artist: '王菲', album: '唱游', src: 'https://github.com/Redbeancc7/cc/releases/download/v1.0/%E7%8E%8B%E8%8F%B2%20-%20%E7%BA%A2%E8%B1%86.mp3', cover: '💎' },
+            { title: '她呓语', artist: '贺予彤', album: '独立音乐', src: 'https://github.com/Redbeancc7/cc/releases/download/v1.0/%E8%B4%BA%E4%BA%88%E5%BD%A4%20-%20%E5%A5%B9%E5%91%93%E8%AF%AD.mp3', cover: '🌸' },
+            { title: '絮书', artist: '贺予彤', album: '独立音乐', src: 'https://github.com/Redbeancc7/cc/releases/download/v1.0/%E8%B4%BA%E4%BA%88%E5%BD%A4%20-%20%E7%B5%AE%E4%B9%A6.mp3', cover: '📝' },
+            { title: '想去码头整点薯条', artist: '黄金玉米王', album: '网络热歌', src: 'https://github.com/Redbeancc7/cc/releases/download/v1.0/%E9%BB%84%E9%87%91%E7%8E%89%E7%B1%B3%E7%8E%8B%20-%20%E6%83%B3%E5%8E%BB%E7%A0%81%E5%A4%B4%E6%95%B4%E7%82%B9%E8%96%AF%E6%9D%A1.mp3', cover: '🍟' }
         ];
 
         let currentTrack = 0;
