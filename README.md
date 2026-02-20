@@ -3617,13 +3617,13 @@
         let calcNewNumber = true;
 
         const playlist = [
-            { title: 'Outer Wilds', artist: 'Andrew Prahlow', album: 'Outer Wilds OST', src: 'https://github.com/Redbeancc7/cc/releases/download/v1.0/Andrew.Prahlow.-.Outer.Wilds.mp3', cover: '🌌' },
-            { title: 'Are You Lost', artist: 'Park Bird', album: 'Dreamcore', src: 'https://github.com/Redbeancc7/cc/releases/download/v1.0/Park.Bird.-.Are.You.Lost.1.mp3', cover: '🎵' },
-            { title: 'Hi', artist: 'TEMPOREX', album: 'Chill Vibes', src: 'https://github.com/Redbeancc7/cc/releases/download/v1.0/TEMPOREX.-.Hi.mp3', cover: '🌙' },
-            { title: '她呓语', artist: '贺予彤', album: '独立音乐', src: 'https://github.com/Redbeancc7/cc/releases/download/v1.0/tayiyu.mp3', cover: '🌸' },
-            { title: '载我回家', artist: '张悬', album: 'My Life Will', src: 'https://github.com/Redbeancc7/cc/releases/download/v1.0/zawohj.mp3', cover: '🏠' },
-            { title: '想去码头整点薯条', artist: '黄金玉米王', album: '网络热歌', src: 'https://github.com/Redbeancc7/cc/releases/download/v1.0/shutiao.mp3', cover: '🍟' },
-            { title: 'Redbean', artist: 'Unknown', album: 'Collection', src: 'https://github.com/Redbeancc7/cc/releases/download/v1.0/redbean.mp3', cover: '🎵' }
+            { title: 'Outer Wilds', artist: 'Andrew Prahlow', album: 'Outer Wilds OST', src: 'https://ghproxy.com/https://github.com/Redbeancc7/cc/releases/download/v1.0/Andrew.Prahlow.-.Outer.Wilds.mp3', cover: '🌌' },
+            { title: 'Are You Lost', artist: 'Park Bird', album: 'Dreamcore', src: 'https://ghproxy.com/https://github.com/Redbeancc7/cc/releases/download/v1.0/Park.Bird.-.Are.You.Lost.1.mp3', cover: '🎵' },
+            { title: 'Hi', artist: 'TEMPOREX', album: 'Chill Vibes', src: 'https://ghproxy.com/https://github.com/Redbeancc7/cc/releases/download/v1.0/TEMPOREX.-.Hi.mp3', cover: '🌙' },
+            { title: '她呓语', artist: '贺予彤', album: '独立音乐', src: 'https://ghproxy.com/https://github.com/Redbeancc7/cc/releases/download/v1.0/tayiyu.mp3', cover: '🌸' },
+            { title: '载我回家', artist: '张悬', album: 'My Life Will', src: 'https://ghproxy.com/https://github.com/Redbeancc7/cc/releases/download/v1.0/zawohj.mp3', cover: '🏠' },
+            { title: '想去码头整点薯条', artist: '黄金玉米王', album: '网络热歌', src: 'https://ghproxy.com/https://github.com/Redbeancc7/cc/releases/download/v1.0/shutiao.mp3', cover: '🍟' },
+            { title: 'Redbean', artist: 'Unknown', album: 'Collection', src: 'https://ghproxy.com/https://github.com/Redbeancc7/cc/releases/download/v1.0/redbean.mp3', cover: '🎵' }
         ];
 
         let currentTrack = 0;
